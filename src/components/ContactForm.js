@@ -87,7 +87,7 @@ const handleFormSubmit = e =>{
             
         </form>
      );
-}
+})
 
 export default ContactForm;
  }
