@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-const { default: ContactForm } = require("./ContactForm")
+import ContactForm from "./ContactForm";
 import firebaseDb from "../firebase";
 
 const Contacts = () => {
@@ -7,8 +7,8 @@ const Contacts = () => {
     var [contactObjects,setcontactObjects] = useState({})
     var [currentId,setCurrentId] = useState('')
 useEffect(()=>{
-    firebaseDb.child('contacts').on('value',snapshot=>{
-      if(snapshot.val()!=null)
+    firebaseDb.child('contacts').on('value',snapshot=> {
+      if(snapshot.val() != null)
       setcontactObjects({
           ...snapshot.val()
       })
@@ -60,7 +60,7 @@ firebaseDb.child(`contacts/${currentid}`).push(
 
 <div className="row">
     <div className="col-md-5">
-        <ContactForm {...(addOrEdit,currentId,contactObjects)}/>
+        <ContactForm {...({addOrEdit,currentId,contactObjects})}/>
      </div>
     <div className="col-md-7"> 
     <table className="table table-borderless table-stripped">
@@ -74,13 +74,13 @@ firebaseDb.child(`contacts/${currentid}`).push(
         </thead>
         <tbody>
             {
-                Object.keys(contactObjects).map(id=>{
+                Object.keys(contactObjects).map(id=> {
                     return <tr key={id}>
-                        <td>{contactObjects.fullName}</td>
-                        <td>{contactObjects.Mobile}</td>
-                        <td>{contactObjects.Email}</td>
+                        <td>{contactObjects[id].nomeCompleto}</td>
+                        <td>{contactObjects[id].celular}</td>
+                        <td>{contactObjects[id].Email}</td>
                         <td>
-                            <a className="btn text-primary" onClick={()=> {setCurrentId(id)}}>
+                            <a className="btn text-primary" onClick={() => {setCurrentId(id)}}>
                                 <i className="fas fa-pencial-alt"></i>
                             </a>
                             <a className="btn text-danger" onClick={() => {onDelete(key) }}>

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, {useState, useEffect } from "react";
 
 const ContactForm= (props) => {
     const initialFieldValues = {
@@ -18,19 +18,19 @@ useEffect(()=>{
     else
     setValues({
         ...props.contactObjects[props.currentId]
-},[props.currentId,props.contactObjects])
+    })
+}, [props.currentId,props.contactObjects])
 
-const handleInputChange = e =>{ 
+const handleInputChange = e => { 
    var {name, value} = e.target
    setValues({
        ...values,
        [name]: value
    })
 }
-const handleFormSubmit = e =>{
+ const handleFormSubmit = e =>{
     e.preventdefault();
     props.addOrEdit(values)
-
 }
 
     return ( 
@@ -81,13 +81,9 @@ const handleFormSubmit = e =>{
               </div>
               <div className="form-group">
                   <input type="submit" value={props.currentId == '' ? "Save" : "Atualizar"} className="btn btn-primary btn-block" />
-
-                 </div>
-          
-            
+                 </div>        
         </form>
      ); 
-
-    
+   }
 
 export default ContactForm;
