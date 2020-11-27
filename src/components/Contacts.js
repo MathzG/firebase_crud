@@ -12,11 +12,10 @@ useEffect(()=>{
       setcontactObjects({
           ...snapshot.val()
       })
-      else
-      setcontactObjects({})
+    })
 },[])
 
-    const addOrExist = obj=>{
+    const addOrEdit = obj=>{
         if(currentId == '')
 firebaseDb.child('contacts').push(  
 obj,
@@ -34,7 +33,7 @@ firebaseDb.child(`contacts/${currentid}`).push(
         else
         setCurrentId('')
     })
-    
+     
     const onDelete = key=>{
         if(window.confirm('tem certeza que quer deletar o save?')){
             firebaseDb.child(`contacts/${key}`).remove(
@@ -43,8 +42,11 @@ firebaseDb.child(`contacts/${currentid}`).push(
                     console.log(err)
                     else
                     setCurrentId('')
+                   }
+            )
                 }
-        }
+        
+     }
     
          
     }
@@ -52,7 +54,7 @@ firebaseDb.child(`contacts/${currentid}`).push(
         <>
         <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4 text-center">Contact Register</h1>
+    <h1 class="display-4 text-center">Registro de Contato</h1>
   </div>
  </div>
 
@@ -64,8 +66,8 @@ firebaseDb.child(`contacts/${currentid}`).push(
     <table className="table table-borderless table-stripped">
         <thead className="thead-light">
             <tr>
-                <th>Full Name</th>
-                <th>Mobile</th>
+                <th>Nome Completo</th>
+                <th>Celular</th>
                 <th>Email</th>
                 <th>Action</th>
             </tr>
@@ -97,3 +99,4 @@ firebaseDb.child(`contacts/${currentid}`).push(
 }
 
 export default Contacts;
+ 
