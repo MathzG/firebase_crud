@@ -29,7 +29,7 @@ const handleInputChange = e => {
    })
 }
  const handleFormSubmit = e =>{
-    e.preventdefault();
+    //e.preventdefault();
     props.addOrEdit(values)
 }
 

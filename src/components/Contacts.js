@@ -24,8 +24,8 @@ err => {
     console.log(err)
 }
 )
-else
-firebaseDb.child(`contacts/${currentid}`).push(  
+else { 
+firebaseDb.child(`contacts/${currentId}`).push(  
     obj,
     err => {
         if(err)
@@ -33,7 +33,11 @@ firebaseDb.child(`contacts/${currentid}`).push(
         else
         setCurrentId('')
     })
-     
+}
+   
+    
+         
+    }
     const onDelete = key=>{
         if(window.confirm('tem certeza que quer deletar o save?')){
             firebaseDb.child(`contacts/${key}`).remove(
@@ -47,9 +51,7 @@ firebaseDb.child(`contacts/${currentid}`).push(
                 }
         
      }
-    
-         
-    }
+
     return (
         <>
         <div class="jumbotron jumbotron-fluid">
@@ -78,13 +80,13 @@ firebaseDb.child(`contacts/${currentid}`).push(
                     return <tr key={id}>
                         <td>{contactObjects[id].nomeCompleto}</td>
                         <td>{contactObjects[id].celular}</td>
-                        <td>{contactObjects[id].Email}</td>
+                        <td>{contactObjects[id].email}</td>
                         <td>
-                            <a className="btn text-primary" onClick={() => {setCurrentId(id)}}>
-                                <i className="fas fa-pencial-alt"></i>
+                            <a className="btn btn-primary" onClick={() => {setCurrentId(id)}}>
+                                <i className="fa-pencil-alt"></i>Editar
                             </a>
-                            <a className="btn text-danger" onClick={() => {onDelete(key) }}>
-                                <i className="fas fa-trash-alt"></i>
+                            <a className="btn btn-danger" onClick={() => {onDelete(id) }}>
+                                <i className="fa-trash-alt"></i>Excluir
                             </a>
                         </td>
                     </tr>
