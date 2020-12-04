@@ -16,7 +16,7 @@ useEffect(()=>{
 },[])
 
     const addOrEdit = obj=>{
-        if(currentId == '')
+        if (currentId == '')
 firebaseDb.child('contacts').push(  
 obj,
 err => {
@@ -25,7 +25,7 @@ err => {
 }
 )
 else { 
-firebaseDb.child(`contacts/${currentId}`).push(  
+firebaseDb.child(`contacts/${currentId}`).set(  
     obj,
     err => {
         if(err)
